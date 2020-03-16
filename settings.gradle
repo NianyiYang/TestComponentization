@@ -1,0 +1,2 @@
+include ':app', ':base', ':router', ':bus', ':module1'
+rootProject.name='TestComponentization'
