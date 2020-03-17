@@ -1,0 +1,4 @@
+ext {
+    router_api = "1.5.0"
+    router_compiler = "1.2.2"
+}

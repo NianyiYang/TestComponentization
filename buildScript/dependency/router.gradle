@@ -1,0 +1,14 @@
+apply plugin: 'kotlin-kapt'
+
+android {
+    kapt {
+        arguments {
+            arg("AROUTER_MODULE_NAME", project.getName())
+        }
+    }
+}
+
+project.dependencies {
+    kapt "com.alibaba:arouter-compiler:$rootProject.router_compiler"
+    implementation project(":router")
+}

@@ -1,0 +1,25 @@
+// 模块的独立调试脚本
+def configModules = "$rootProject.ext.configModules"
+
+def modules = configModules.split(",")
+def contains = modules.contains(project.getName())
+
+if (contains) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
+
+delete project.buildDir
+
+android {
+    sourceSets {
+        main {
+            if (contains) {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
+}

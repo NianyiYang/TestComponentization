@@ -1,8 +1,11 @@
 package com.yny.router
 
-import android.app.Application
 import com.alibaba.android.arouter.facade.template.IProvider
 
-interface ModuleInit : IProvider {
-    fun initModule(application: Application)
-}
+/**
+ * 初始化模块
+ *
+ * @author nianyi.yang
+ * @date 2020-03-17 15:25
+ */
+interface ModuleInit : IProvider

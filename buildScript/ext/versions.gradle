@@ -1,0 +1,3 @@
+apply from: "$rootProject.projectDir/buildScript/ext/app_version.gradle"
+apply from: "$rootProject.projectDir/buildScript/ext/build_version.gradle"
+apply from: "$rootProject.projectDir/buildScript/ext/router.gradle"

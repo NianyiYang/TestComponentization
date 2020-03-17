@@ -1,0 +1,26 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def configModules = "$rootProject.ext.configModules"
+
+android{
+    buildTypes {
+
+        release {
+            resValue "string", "modules", configModules
+        }
+
+        debug {
+            resValue "string", "modules", configModules
+        }
+    }
+}
+
+def modules = configModules.split(',')
+
+modules.each {
+    module ->
+        print(module)
+        project.dependencies.add("implementation", project(':' + module))
+}
