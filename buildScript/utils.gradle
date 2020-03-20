@@ -1,8 +1,8 @@
 // 获取在 gradle 配置文件 gradle.properties 中声明的所有模块
-def getConfigModules() {
-    return project.properties.get("dependencyModules")
+def getAppModules() {
+    return project.properties.get("app.modules")
 }
 
 ext {
-    configModules = this.&getConfigModules
+    appModules = this.&getAppModules
 }

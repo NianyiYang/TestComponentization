@@ -1,9 +1,9 @@
 // 模块的独立调试脚本
-def configModules = "$rootProject.ext.configModules"
-
-def modules = configModules.split(",")
+def appModules = "$rootProject.ext.appModules"
+def modules = appModules.split(",")
 def contains = modules.contains(project.getName())
 
+// 如果不包含在App，则作为独立项目运行
 if (contains) {
     apply plugin: 'com.android.library'
 } else {
@@ -12,6 +12,7 @@ if (contains) {
 
 delete project.buildDir
 
+// 根据是否被app包含调用不同的manifest
 android {
     sourceSets {
         main {

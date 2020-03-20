@@ -2,22 +2,22 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-def configModules = "$rootProject.ext.configModules"
+def appModules = "$rootProject.ext.appModules"
 
 android{
     buildTypes {
 
         release {
-            resValue "string", "modules", configModules
+            resValue "string", "modules", appModules
         }
 
         debug {
-            resValue "string", "modules", configModules
+            resValue "string", "modules", appModules
         }
     }
 }
 
-def modules = configModules.split(',')
+def modules = appModules.split(',')
 
 modules.each {
     module ->
