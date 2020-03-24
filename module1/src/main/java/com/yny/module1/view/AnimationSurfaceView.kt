@@ -32,6 +32,7 @@ class AnimationSurfaceView : SurfaceView, SurfaceHolder.Callback, Runnable {
     }
 
     fun setPercentWithAnimator(newPercent: Float) {
+
         val animator =
             ObjectAnimator.ofFloat(this, "percent", percent, newPercent)
         animator.duration = 1000
@@ -39,25 +40,33 @@ class AnimationSurfaceView : SurfaceView, SurfaceHolder.Callback, Runnable {
         animator.start()
     }
 
+    fun threadStart() {
+        if (drawThread == null) {
+            drawThread = Thread(this)
+        }
+        drawThread?.start()
+    }
+
+    fun threadStop() {
+        drawThread = null
+    }
+
     override fun surfaceChanged(holder: SurfaceHolder?, p1: Int, p2: Int, p3: Int) {
 
     }
 
     override fun surfaceDestroyed(holder: SurfaceHolder?) {
-        drawThread = null
+        threadStop()
     }
 
     override fun surfaceCreated(holder: SurfaceHolder?) {
-        drawThread?.start()
+        threadStart()
     }
 
     override fun run() {
         val thread = Thread.currentThread()
         while (drawThread == thread) {
-
             val paint = Paint()
-
-
             val canvas = holder.lockCanvas()
 
             try {
